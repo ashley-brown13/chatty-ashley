@@ -1,25 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import firebase from 'firebase/app';
-import './config/firebaseConfig';
+import firebase from './config/firebaseConfig';
 import 'firebase/auth';
 import 'firebase/firestore';
 import LoginPage from './components/LoginPage';
+import AddMessageComponent from './components/AddMessageComponent';
+// import AddMessageComponent from './components/AddMessageComponent';
+
+interface User {
+  name?:string;
+  email?:string;
+  photo?:string;
+}
+
 
 const App = (): JSX.Element => {
-  const [authorization, setAuthorization] = useState(
-    false || window.localStorage.getItem('authorization') === 'true'
-  );
-  const [currentUser, setCurrentUser] = useState(null);
-
-  // useEffect(() => {
-  //   firebase.auth().onAuthStateChanged((user) => {
-  //     if (user) {
-  //       setAuthorization(true);
-  //       window.localStorage.setItem('authorization', 'true');
-  //     }
-  //   });
-  // }, []);
+  const authUser:string | null = window.localStorage.getItem('authUser')
+  const [user, setUser] = useState(null || authUser);
 
   const handleLogin = () => {
     firebase
@@ -31,7 +28,6 @@ const App = (): JSX.Element => {
           const photoURL = payload.user?.photoURL
           const uid = payload.user?.uid
           const email = payload.user?.email
-          setCurrentUser({ displayName, photoURL, uid })
           login({ displayName, photoURL, uid, email })
         }
       });
@@ -46,15 +42,21 @@ const App = (): JSX.Element => {
       body: JSON.stringify(user),
     });
     if(response.ok) {
-      setAuthorization(true);
-      window.localStorage.setItem('authorization', 'true');
+      const { displayName, email, photoURL } = user
+      const localUser:User = {
+        name: displayName,
+        email: email,
+        photo: photoURL
+      }
+      setUser(JSON.stringify(localUser))
+      window.localStorage.setItem('authUser', JSON.stringify(localUser));
     }
   }
 
   return (
     <div className="App">
-      {authorization ? (
-				null
+      {user ? (
+				<AddMessageComponent authUser={user}/>
 			) : (
 				<LoginPage handleLogin={handleLogin}/>
 			)}

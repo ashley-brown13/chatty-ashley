@@ -21,3 +21,5 @@ const firebaseConfig: FirConfig = {
 };
 
 firebase.initializeApp(firebaseConfig)
+
+export default firebase

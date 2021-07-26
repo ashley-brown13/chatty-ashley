@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button } from '@material-ui/core';
+
 
 type AppProps = {
   handleLogin: () => void;
@@ -8,7 +10,7 @@ const LoginPage = ({ handleLogin }: AppProps): JSX.Element => {
 
   return (
     <div className="login-page">
-				<button onClick={handleLogin}>Google Login</button>
+        <Button onClick={handleLogin} variant="outlined" color="primary">Google Login</Button>
     </div>
   );
 }
