@@ -5,11 +5,11 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import LoginPage from './components/LoginPage';
 import AddMessageComponent from './components/AddMessageComponent';
-// import AddMessageComponent from './components/AddMessageComponent';
+import MessageBoardComponent from './components/MessageBoardComponent'
 
 interface User {
   name?:string;
-  email?:string;
+  authEmail?:string;
   photo?:string;
 }
 
@@ -45,7 +45,7 @@ const App = (): JSX.Element => {
       const { displayName, email, photoURL } = user
       const localUser:User = {
         name: displayName,
-        email: email,
+        authEmail: email,
         photo: photoURL
       }
       setUser(JSON.stringify(localUser))
@@ -56,7 +56,10 @@ const App = (): JSX.Element => {
   return (
     <div className="App">
       {user ? (
-				<AddMessageComponent authUser={user}/>
+        <div>
+          <MessageBoardComponent authUser={user}/>
+          <AddMessageComponent authUser={user}/>
+        </div>
 			) : (
 				<LoginPage handleLogin={handleLogin}/>
 			)}

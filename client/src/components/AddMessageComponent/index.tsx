@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import firebase from '../../config/firebaseConfig';
 import { Button, TextField } from '@material-ui/core';
 
-
 const firestore = firebase.firestore();
 const messageCollection = firestore.collection('messages');
 
@@ -12,7 +11,7 @@ type AddMessageProps = {
 
 const AddMessageComponent = ({authUser}: AddMessageProps): JSX.Element => {
   const [formText, setFormText] = useState('')
-  const { name, photo, email } = JSON.parse(authUser)
+  const { name, photo, authEmail } = JSON.parse(authUser)
 
   const addMessage = async (e) => {
     e.preventDefault();
@@ -22,12 +21,11 @@ const AddMessageComponent = ({authUser}: AddMessageProps): JSX.Element => {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       displayName: name,
       photoURL: photo,
-      email: email
+      email: authEmail
     })
 
     setFormText('');
   }
-
 
   return (
     <div className="add-message-component">
