@@ -5,14 +5,15 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import LoginPage from './components/LoginPage';
 import AddMessageComponent from './components/AddMessageComponent';
-import MessageBoardComponent from './components/MessageBoardComponent'
+import MessageBoardComponent from './components/MessageBoardComponent';
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+import logo from './images/ChattyAshleyLogo.png'
 
 interface User {
   name?:string;
   authEmail?:string;
   photo?:string;
 }
-
 
 const App = (): JSX.Element => {
   const authUser:string | null = window.localStorage.getItem('authUser')
@@ -53,12 +54,21 @@ const App = (): JSX.Element => {
     }
   }
 
+  function handleLogout(){
+    window.localStorage.removeItem('authUser')
+    setUser(null)
+  }
+
   return (
     <div className="App">
       {user ? (
         <div>
-          <MessageBoardComponent authUser={user}/>
-          <AddMessageComponent authUser={user}/>
+          <div className="navigation-bar">
+            <img src={logo} alt={logo} id='logo-image'/>
+            <ExitToAppRoundedIcon onClick={handleLogout} color="secondary" id='logout'/>
+          </div>
+            <MessageBoardComponent authUser={user}/>
+            <AddMessageComponent authUser={user}/>
         </div>
 			) : (
 				<LoginPage handleLogin={handleLogin}/>
