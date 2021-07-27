@@ -26,6 +26,8 @@ const MessageBoardComponent = ({authUser}: MessageBoardProps): JSX.Element => {
         display="flex"
         flexDirection="column"
         p="20px"
+        bgcolor="#F5F5F5"
+        height="85%"
       >
         {listOfMessages && listOfMessages.map(message => <IndividualMessageComponent key={message.createdAt} message={message} authUser={authUser} />)}
       </Box>

@@ -1,0 +1,49 @@
+.message-recipient,
+.message-owner {
+  display: flex;
+  align-items: center;
+}
+
+.message-recipient-info,
+.message-owner-info {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10px;
+}
+
+.message-name-date {
+  display: flex;
+  margin-bottom: -25px;
+}
+
+#ind-message-display-name {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.avatar {
+  height: 70px;
+  width: 70px;
+}
+
+.message-recipient,
+.message-owner {
+  margin-bottom: 5px;
+}
+
+.message-owner {
+  flex-direction: row-reverse;
+}
+
+.message-recipient-info {
+  background-color: #1E5E8C;
+  margin-left: 20px;
+}
+
+.message-owner-info {
+  background-color: #2A6648;
+  margin-right: 20px;
+}

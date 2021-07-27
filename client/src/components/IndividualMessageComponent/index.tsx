@@ -1,5 +1,6 @@
 import React from 'react';
 import {Avatar} from '@material-ui/core';
+import './IndividualMessageComponent.css';
 
 type IndMessageUserProps = {
   authUser: string;
@@ -13,17 +14,17 @@ const IndividualMessageComponent = ({authUser, message}: IndMessageUserProps ): 
   const Date = createdAt.toDate()
   const formattedDate = Date.toString().slice(4, 16)
 
-  const messageType = email === authEmail ? 'owner' : 'recipent';
+  const messageType = email === authEmail ? 'owner' : 'recipient';
 
   return (
     <div className={`message-${messageType}`}>
-      <Avatar alt={displayName} src={photoURL} />
-      <div className='message-name-date-body'>
+      <Avatar alt={displayName} src={photoURL} className='avatar'/>
+      <div className={`message-${messageType}-info`}>
         <div className='message-name-date'>
-          <p>{displayName}</p>
-          <p>{formattedDate}</p>
+          <p id='ind-message-display-name'>{displayName}</p>
+          <p id='ind-message-date'>{formattedDate}</p>
         </div>
-        <p>{messageBody}</p>
+          <p id='ind-message-message-body'>{messageBody}</p>
       </div>
     </div>
   )
