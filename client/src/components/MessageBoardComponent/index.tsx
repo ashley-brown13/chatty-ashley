@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect} from 'react';
 import firebase from '../../config/firebaseConfig';
 import Box from '@material-ui/core/Box';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -13,9 +13,13 @@ type MessageBoardProps = {
 }
 
 const MessageBoardComponent = ({authUser}: MessageBoardProps): JSX.Element => {
-
+  const scroll = useRef();
   const grabMessages = messageCollection.orderBy('createdAt').limitToLast(50);
   const [listOfMessages]= useCollectionData(grabMessages);
+
+  useEffect(() => {
+    scroll.current.scrollIntoView({ behavior: 'smooth' });
+  }, [listOfMessages])
 
   return (
     <div className="message-board">
@@ -27,9 +31,11 @@ const MessageBoardComponent = ({authUser}: MessageBoardProps): JSX.Element => {
         flexDirection="column"
         p="20px"
         bgcolor="#F5F5F5"
-        height="85%"
+        height="90%"
+        id="message-board-box"
       >
         {listOfMessages && listOfMessages.map(message => <IndividualMessageComponent key={message.createdAt} message={message} authUser={authUser} />)}
+        <span ref={scroll}></span>
       </Box>
     </div>
   );

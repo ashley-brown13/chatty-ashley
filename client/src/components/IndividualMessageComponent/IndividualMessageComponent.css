@@ -24,14 +24,9 @@
   margin-right: 10px;
 }
 
-.avatar {
-  height: 70px;
-  width: 70px;
-}
-
 .message-recipient,
 .message-owner {
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .message-owner {
@@ -46,4 +41,9 @@
 .message-owner-info {
   background-color: #2A6648;
   margin-right: 20px;
+}
+
+#avatar {
+  height: 70px;
+  width: 70px;
 }

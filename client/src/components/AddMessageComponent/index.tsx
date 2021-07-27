@@ -40,7 +40,7 @@ const AddMessageComponent = ({authUser}: AddMessageProps): JSX.Element => {
             label="Enter message here"
             variant="outlined" value={formText}
             onChange={(e) => setFormText(e.target.value)}/>
-          <Button type="submit" variant="contained" color="primary" className="send-message-button" endIcon={<Icon>send</Icon>}>Send</Button>
+          <Button type="submit" variant="contained" color="primary" id="send-message-button" endIcon={<Icon>send</Icon>}>Send</Button>
       </form>
     </div>
   );

@@ -4,3 +4,7 @@
   margin-right: 60px;
   height: 70vh;
 }
+
+#message-board-box {
+  overflow-y: scroll;
+}
