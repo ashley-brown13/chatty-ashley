@@ -34,16 +34,22 @@
 }
 
 .message-recipient-info {
-  background-color: #1E5E8C;
+  background-color: #98309f;
   margin-left: 20px;
 }
 
 .message-owner-info {
-  background-color: #2A6648;
+  background-color: #303f9f;
   margin-right: 20px;
 }
 
 #avatar {
   height: 70px;
   width: 70px;
+}
+
+#positioned {
+  position: absolute;
+  top: 70vh;
+  left: 45vw;
 }

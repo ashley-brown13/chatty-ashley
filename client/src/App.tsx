@@ -62,14 +62,14 @@ const App = (): JSX.Element => {
   return (
     <div className="App">
       {user ? (
-        <div>
+        <>
           <div className="navigation-bar">
-            <img src={logo} alt={logo} id='logo-image'/>
+            <img src={logo} alt="logo" id='logo-image'/>
             <ExitToAppRoundedIcon onClick={handleLogout} color="secondary" id='logout'/>
           </div>
             <MessageBoardComponent authUser={user}/>
             <AddMessageComponent authUser={user}/>
-        </div>
+        </>
 			) : (
 				<LoginPage handleLogin={handleLogin}/>
 			)}

@@ -7,7 +7,7 @@
 }
 
 #outlined-basic {
-  width: 83vw;
+  width: 81vw;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
@@ -15,9 +15,12 @@
 .add-message-form {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .add-message-component {
-  margin: 20px 60px 20px 60px;
+  margin-top: 20px;
+  margin-bottom:10px;
+  margin-left: auto;
+  margin-right: auto;
 }
