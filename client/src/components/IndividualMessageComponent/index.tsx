@@ -17,7 +17,7 @@ const IndividualMessageComponent = ({authUser, message}: IndMessageUserProps ): 
   }
 
 
-  const messageType = email === authEmail ? 'owner' : 'recipient';
+  const messageType:string = email === authEmail ? 'owner' : 'recipient';
 
   return (
     <div className={`message-${messageType}`}>

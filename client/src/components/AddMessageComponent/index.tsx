@@ -4,15 +4,17 @@ import { Button, TextField } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 import './AddMessageComponent.css'
 
-const firestore = firebase.firestore();
-const messageCollection = firestore.collection('messages');
+const firestore: firebase.firestore.Firestore = firebase.firestore();
+const messageCollection: firebase.firestore.CollectionReference = firestore.collection('messages');
 
 type AddMessageProps = {
   authUser: string;
 }
 
+type FormText = string
+
 const AddMessageComponent = ({authUser}: AddMessageProps): JSX.Element => {
-  const [formText, setFormText] = useState('')
+  const [formText, setFormText] = useState<FormText>('')
   const { name, photo, authEmail } = JSON.parse(authUser)
 
   const addMessage = async (e) => {

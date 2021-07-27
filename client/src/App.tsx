@@ -19,19 +19,18 @@ const App = (): JSX.Element => {
   const authUser:string | null = window.localStorage.getItem('authUser')
   const [user, setUser] = useState(null || authUser);
 
-  const handleLogin = () => {
-    firebase
+  console.log("yes")
+  const handleLogin = async () => {
+    const payload = await firebase
       .auth()
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then((payload) => {
-        if (payload) {
-          const displayName = payload.user?.displayName
-          const photoURL = payload.user?.photoURL
-          const uid = payload.user?.uid
-          const email = payload.user?.email
-          login({ displayName, photoURL, uid, email })
-        }
-      });
+    if (payload) {
+      const displayName = payload.user?.displayName
+      const photoURL = payload.user?.photoURL
+      const uid = payload.user?.uid
+      const email = payload.user?.email
+      await login({ displayName, photoURL, uid, email })
+    }
   };
 
   async function login(user){
@@ -43,6 +42,8 @@ const App = (): JSX.Element => {
       body: JSON.stringify(user),
     });
     if(response.ok) {
+      const token = await response.json()
+      window.localStorage.setItem('token', JSON.stringify(token));
       const { displayName, email, photoURL } = user
       const localUser:User = {
         name: displayName,

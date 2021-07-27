@@ -8,6 +8,8 @@ interface UserData {
   photoURL: string;
 }
 
+
+
 export const addUserToDB = async (req: Request, res: Response) => {
     const userData: UserData = req.body;
 
@@ -15,4 +17,9 @@ export const addUserToDB = async (req: Request, res: Response) => {
       .collection('users')
       .doc(userData.uid)
       .set(userData)
+}
+
+export const getToken = async (userId) => {
+  const token: string = await admin.auth().createCustomToken(userId)
+  return token
 }

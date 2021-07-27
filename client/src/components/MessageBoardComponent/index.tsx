@@ -5,21 +5,23 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import IndividualMessageComponent from '../IndividualMessageComponent';
 import './MessageBoardComponent.css'
 
-const firestore = firebase.firestore();
-const messageCollection = firestore.collection('messages');
+const firestore: firebase.firestore.Firestore = firebase.firestore();
+const messageCollection: firebase.firestore.CollectionReference = firestore.collection('messages');
 
 type MessageBoardProps = {
   authUser: string;
 }
 
+type Hide = boolean
+
 const MessageBoardComponent = ({authUser}: MessageBoardProps): JSX.Element => {
   const scroll = useRef();
   const grabMessages = messageCollection.orderBy('createdAt').limitToLast(50);
   const [listOfMessages]= useCollectionData(grabMessages);
-  const [hide, setHide] = useState(true)
+  const [hide, setHide] = useState<Hide>(true)
 
   const handleScroll = (e) => {
-    const bottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    const bottom: boolean = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
     if (bottom) {
       setHide(true)
     }
