@@ -47,9 +47,3 @@
   height: 70px;
   width: 70px;
 }
-
-#positioned {
-  position: absolute;
-  top: 70vh;
-  left: 45vw;
-}

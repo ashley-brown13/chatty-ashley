@@ -11,3 +11,10 @@
 #message-board-box {
   overflow-y: scroll;
 }
+
+#positioned {
+  position: absolute;
+  top: 70vh;
+  left: 45vw;
+  z-index: 800;
+}

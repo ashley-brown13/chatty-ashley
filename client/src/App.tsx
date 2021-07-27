@@ -8,48 +8,16 @@ import AddMessageComponent from './components/AddMessageComponent';
 import MessageBoardComponent from './components/MessageBoardComponent';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import logo from './images/ChattyAshleyLogo.png'
-
-interface User {
-  name?:string;
-  authEmail?:string;
-  photo?:string;
-}
+import {googleLogin} from './Controllers/login'
 
 const App = (): JSX.Element => {
   const authUser:string | null = window.localStorage.getItem('authUser')
   const [user, setUser] = useState(null || authUser);
 
   const handleLogin = async () => {
-    const payload = await firebase
-      .auth()
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-    if (payload) {
-      const displayName = payload.user?.displayName
-      const photoURL = payload.user?.photoURL
-      const uid = payload.user?.uid
-      const email = payload.user?.email
-      await login({ displayName, photoURL, uid, email })
-    }
-  };
-
-  async function login(user){
-    const response = await fetch(`/api/login`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify(user),
-    });
-    if(response.ok) {
-      const { displayName, email, photoURL } = user
-      const localUser:User = {
-        name: displayName,
-        authEmail: email,
-        photo: photoURL
-      }
-      setUser(JSON.stringify(localUser))
-      window.localStorage.setItem('authUser', JSON.stringify(localUser));
-    }
+    const localUser = await googleLogin()
+    window.localStorage.setItem('authUser', JSON.stringify(localUser));
+    setUser(localUser)
   }
 
   function handleLogout(){
