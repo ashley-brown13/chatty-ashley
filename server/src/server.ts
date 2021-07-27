@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import firebaseAdmin from './config/firebaseConfig';
-import { addUserToDB, getToken } from './controllers/user'
+import { addUserToDB } from './controllers/user'
 
 const app = express();
 const port: number = 5000;
@@ -19,8 +19,7 @@ app.post('/api/login', async (req: express.Request, res: express.Response) => {
       addUserToDB(req, res)
     }
   });
-  let token:string = await getToken(userId)
-  return res.json(token)
+  return res.json({success: true})
 });
 
 app.listen(port, () => {
