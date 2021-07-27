@@ -1,8 +1,9 @@
 import React from 'react';
 import firebase from '../../config/firebaseConfig';
-import { Box } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import IndividualMessageComponent from '../IndividualMessageComponent';
+import './MessageBoardComponent.css'
 
 const firestore = firebase.firestore();
 const messageCollection = firestore.collection('messages');
@@ -17,9 +18,18 @@ const MessageBoardComponent = ({authUser}: MessageBoardProps): JSX.Element => {
   const [listOfMessages]= useCollectionData(grabMessages);
 
   return (
-    <Box>
-      {listOfMessages && listOfMessages.map(message => <IndividualMessageComponent key={message.createdAt} message={message} authUser={authUser} />)}
-    </Box>
+    <div className="message-board">
+      <Box
+        border={2}
+        borderColor="text.primary"
+        borderRadius={16}
+        display="flex"
+        flexDirection="column"
+        p="20px"
+      >
+        {listOfMessages && listOfMessages.map(message => <IndividualMessageComponent key={message.createdAt} message={message} authUser={authUser} />)}
+      </Box>
+    </div>
   );
 }
 
