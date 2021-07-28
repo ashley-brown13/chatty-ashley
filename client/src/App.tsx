@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 import LoginPage from './components/LoginPage';
-import AddMessageComponent from './components/AddMessageComponent';
-import MessageBoardComponent from './components/MessageBoardComponent';
+import MessageForm from './components/MessageForm';
+import MessageBoard from './components/MessageBoard';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import logo from './images/ChattyAshleyLogo.png'
 import {googleLogin} from './Controllers/login'
@@ -31,8 +31,8 @@ const App = (): JSX.Element => {
             <img src={logo} alt="logo" id='logo-image'/>
             <ExitToAppRoundedIcon onClick={handleLogout} color="secondary" id='logout'/>
           </div>
-            <MessageBoardComponent authUser={user}/>
-            <AddMessageComponent authUser={user}/>
+            <MessageBoard authUser={user}/>
+            <MessageForm authUser={user}/>
         </>
 			) : (
 				<LoginPage handleLogin={handleLogin}/>

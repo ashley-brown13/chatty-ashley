@@ -1,6 +1,6 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import './IndividualMessageComponent.css';
+import './IndividualMessage.css';
 import firebase from '../../config/firebaseConfig'
 
 type IndMessageUserProps = {
@@ -8,7 +8,7 @@ type IndMessageUserProps = {
   message: firebase.firestore.DocumentData;
 }
 
-const IndividualMessageComponent = ({authUser, message}: IndMessageUserProps ): JSX.Element => {
+const IndividualMessage = ({authUser, message}: IndMessageUserProps ): JSX.Element => {
   const { authEmail } = JSON.parse(authUser)
 
   const { displayName, email, photoURL, messageBody, createdAt } = message;
@@ -33,4 +33,4 @@ const IndividualMessageComponent = ({authUser, message}: IndMessageUserProps ): 
   )
 }
 
-export default IndividualMessageComponent
+export default IndividualMessage

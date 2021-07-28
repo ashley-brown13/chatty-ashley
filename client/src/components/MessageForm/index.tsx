@@ -3,19 +3,19 @@ import firebase from '../../config/firebaseConfig';
 import { sendMessage } from '../../Controllers/messages'
 import { Button, TextField } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
-import './AddMessageComponent.css'
+import './MessageForm.css'
 
-type AddMessageProps = {
+type MessageFormProps = {
   authUser: string;
 }
 
 type FormText = string
 
-const AddMessageComponent = ({authUser}: AddMessageProps): JSX.Element => {
+const MessageForm = ({authUser}: MessageFormProps): JSX.Element => {
   const [formText, setFormText] = useState<FormText>('')
   const { name, photo, authEmail } = JSON.parse(authUser)
 
-  const addMessage = async (e) => {
+  const addMessage = async (e): Promise<void> => {
     e.preventDefault();
     const token: string|undefined = await firebase.auth().currentUser?.getIdToken()
     const sent = await sendMessage({formText, name, photo, authEmail, token})
@@ -41,4 +41,4 @@ const AddMessageComponent = ({authUser}: AddMessageProps): JSX.Element => {
   );
 }
 
-export default AddMessageComponent;
+export default MessageForm;

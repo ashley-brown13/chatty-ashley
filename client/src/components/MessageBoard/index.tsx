@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import {Box, Button} from '@material-ui/core';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import IndividualMessageComponent from '../IndividualMessageComponent';
-import './MessageBoardComponent.css'
+import IndividualMessage from '../IndividualMessage';
+import './MessageBoard.css'
 import {grabMessages} from '../../Controllers/messages'
 
 type MessageBoardProps = {
@@ -11,7 +11,7 @@ type MessageBoardProps = {
 
 type Hide = boolean
 
-const MessageBoardComponent = ({authUser}: MessageBoardProps): JSX.Element => {
+const MessageBoard = ({authUser}: MessageBoardProps): JSX.Element => {
   const scroll = useRef();
   const [listOfMessages]= useCollectionData(grabMessages);
   const [hide, setHide] = useState<Hide>(true)
@@ -50,11 +50,11 @@ const MessageBoardComponent = ({authUser}: MessageBoardProps): JSX.Element => {
         onScroll={handleScroll}
       >
         {!hide && <span id="positioned"><Button hidden={hide} variant="contained" color="secondary" onClick={scrollToBottom}>Scroll to Bottom</Button></span>}
-        {listOfMessages && listOfMessages.map(message => <IndividualMessageComponent key={message.createdAt} message={message} authUser={authUser} />)}
+        {listOfMessages && listOfMessages.map(message => <IndividualMessage key={message.createdAt} message={message} authUser={authUser} />)}
         <span ref={scroll}></span>
       </Box>
     </div>
   );
 }
 
-export default MessageBoardComponent
+export default MessageBoard
