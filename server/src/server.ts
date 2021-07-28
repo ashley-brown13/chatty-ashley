@@ -42,6 +42,14 @@ app.post('/api/messages/send', async (req: express.Request, res: express.Respons
   return res.json({success: true})
 })
 
+app.use((req: express.Request, res: express.Response) => {
+  res.status(500);
+  res.json({
+    message: 'Server Error'
+  });
+});
+
+
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
 });
