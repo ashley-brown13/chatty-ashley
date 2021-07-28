@@ -8,7 +8,7 @@ interface User {
   photo?:string;
 }
 
-export const googleLogin = async (): Promise<User> => {
+export const googleLogin = async (): Promise<User > => {
   const payload = await firebase
     .auth()
     .signInWithPopup(new firebase.auth.GoogleAuthProvider())

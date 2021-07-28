@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import firebaseAdmin from './config/firebaseConfig';
 import { addUserToDB } from './controllers/user';
 
@@ -11,10 +12,12 @@ app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-app.post('/api/login', async (req: express.Request, res: express.Response) => {
+const firestore: firebaseAdmin.firestore.Firestore = firebaseAdmin.firestore();
+const messageCollection: firebaseAdmin.firestore.CollectionReference = firestore.collection('messages');
+
+app.post('/api/login', async (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const userId: string = req.body.uid;
-  const db: firebaseAdmin.firestore.Firestore = firebaseAdmin.firestore();
-  const firebaseUser = db.collection("users").doc(userId);
+  const firebaseUser = firestore.collection("users").doc(userId);
   await firebaseUser.get().then((doc) => {
     if (!doc.exists) {
       addUserToDB(req, res)
@@ -23,7 +26,21 @@ app.post('/api/login', async (req: express.Request, res: express.Response) => {
   return res.json({success: true})
 });
 
-app.post
+app.post('/api/messages/send', async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  const { formText, name, photo, authEmail, token } = req.body;
+  await firebaseAdmin
+    .auth()
+    .verifyIdToken(token)
+  await messageCollection.add({
+    messageBody: formText,
+    createdAt: firebaseAdmin.firestore.FieldValue.serverTimestamp(),
+    displayName: name,
+    photoURL: photo,
+    email: authEmail
+  })
+  return res.json({success: true})
+})
+
 
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);

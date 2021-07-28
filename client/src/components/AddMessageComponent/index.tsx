@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import firebase from '../../config/firebaseConfig';
+import { sendMessage } from '../../Controllers/messages'
 import { Button, TextField } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 import './AddMessageComponent.css'
-
-const firestore: firebase.firestore.Firestore = firebase.firestore();
-const messageCollection: firebase.firestore.CollectionReference = firestore.collection('messages');
 
 type AddMessageProps = {
   authUser: string;
@@ -19,16 +17,11 @@ const AddMessageComponent = ({authUser}: AddMessageProps): JSX.Element => {
 
   const addMessage = async (e) => {
     e.preventDefault();
-
-    await messageCollection.add({
-      messageBody: formText,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      displayName: name,
-      photoURL: photo,
-      email: authEmail
-    })
-
-    setFormText('');
+    const token = await firebase.auth().currentUser?.getIdToken()
+    const sent = await sendMessage({formText, name, photo, authEmail, token})
+    if(sent){
+      setFormText('');
+    }
   }
 
   return (
