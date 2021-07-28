@@ -1,12 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
-import firebase from '../../config/firebaseConfig';
 import {Box, Button} from '@material-ui/core';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import IndividualMessageComponent from '../IndividualMessageComponent';
 import './MessageBoardComponent.css'
-
-const firestore: firebase.firestore.Firestore = firebase.firestore();
-const messageCollection: firebase.firestore.CollectionReference = firestore.collection('messages');
+import {grabMessages} from '../../Controllers/messages'
 
 type MessageBoardProps = {
   authUser: string;
@@ -16,7 +13,6 @@ type Hide = boolean
 
 const MessageBoardComponent = ({authUser}: MessageBoardProps): JSX.Element => {
   const scroll = useRef();
-  const grabMessages = messageCollection.orderBy('createdAt').limitToLast(50);
   const [listOfMessages]= useCollectionData(grabMessages);
   const [hide, setHide] = useState<Hide>(true)
 

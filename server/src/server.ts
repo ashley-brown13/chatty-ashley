@@ -17,10 +17,11 @@ const messageCollection: firebaseAdmin.firestore.CollectionReference = firestore
 
 app.post('/api/login', async (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const userId: string = req.body.uid;
+  const userData = req.body;
   const firebaseUser = firestore.collection("users").doc(userId);
   await firebaseUser.get().then((doc) => {
     if (!doc.exists) {
-      addUserToDB(req, res)
+      addUserToDB(userData)
     }
   });
   return res.json({success: true})
@@ -40,7 +41,6 @@ app.post('/api/messages/send', async (req: express.Request, res: express.Respons
   })
   return res.json({success: true})
 })
-
 
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);

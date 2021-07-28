@@ -17,7 +17,7 @@ const AddMessageComponent = ({authUser}: AddMessageProps): JSX.Element => {
 
   const addMessage = async (e) => {
     e.preventDefault();
-    const token = await firebase.auth().currentUser?.getIdToken()
+    const token: string|undefined = await firebase.auth().currentUser?.getIdToken()
     const sent = await sendMessage({formText, name, photo, authEmail, token})
     if(sent){
       setFormText('');

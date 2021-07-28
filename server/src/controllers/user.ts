@@ -1,5 +1,5 @@
 import admin from '../config/firebaseConfig';
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 interface UserData {
   displayName: string;
@@ -8,9 +8,7 @@ interface UserData {
   photoURL: string;
 }
 
-export const addUserToDB = async (req: Request, res: Response) => {
-    const userData: UserData = req.body;
-
+export const addUserToDB = async (userData:UserData ) => {
     await admin.firestore()
       .collection('users')
       .doc(userData.uid)

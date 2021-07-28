@@ -1,3 +1,7 @@
+import firebase from '../config/firebaseConfig'
+import 'firebase/auth';
+import 'firebase/firestore';
+
 interface Message {
   formText: string;
   name: string;
@@ -16,3 +20,7 @@ export const sendMessage = async (message: Message): Promise<boolean> => {
   });
   return true
 }
+
+const firestore: firebase.firestore.Firestore = firebase.firestore();
+const messageCollection: firebase.firestore.CollectionReference = firestore.collection('messages');
+export const grabMessages = messageCollection.orderBy('createdAt').limitToLast(50);

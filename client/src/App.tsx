@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import firebase from './config/firebaseConfig';
-import 'firebase/auth';
-import 'firebase/firestore';
 import LoginPage from './components/LoginPage';
 import AddMessageComponent from './components/AddMessageComponent';
 import MessageBoardComponent from './components/MessageBoardComponent';
