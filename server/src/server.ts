@@ -2,12 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import firebaseAdmin from './config/firebaseConfig';
-import { addUserToDB } from './controllers/user'
+import { addUserToDB } from './controllers/user';
 
 const app = express();
 const port: number = 5000;
 
 app.use(cors());
+app.use(cookieParser());
 app.use(bodyParser.json());
 
 app.post('/api/login', async (req: express.Request, res: express.Response) => {
@@ -21,6 +22,8 @@ app.post('/api/login', async (req: express.Request, res: express.Response) => {
   });
   return res.json({success: true})
 });
+
+app.post
 
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);

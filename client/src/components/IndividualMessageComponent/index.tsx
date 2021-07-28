@@ -11,7 +11,7 @@ const IndividualMessageComponent = ({authUser, message}: IndMessageUserProps ): 
   const { authEmail } = JSON.parse(authUser)
 
   const { displayName, email, photoURL, messageBody, createdAt } = message;
-  let formattedDate:string | null = null
+  let formattedDate: string | null = null
   if(createdAt){
     formattedDate = createdAt.toDate().toString().slice(4, 16)
   }

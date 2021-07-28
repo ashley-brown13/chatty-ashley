@@ -12,15 +12,16 @@ import {googleLogin} from './Controllers/login'
 
 const App = (): JSX.Element => {
   const authUser:string | null = window.localStorage.getItem('authUser')
-  const [user, setUser] = useState(null || authUser);
+  const [user, setUser] = useState<string | null>(null || authUser);
 
-  const handleLogin = async () => {
+  const handleLogin = async (): Promise<void> => {
     const localUser = await googleLogin()
-    window.localStorage.setItem('authUser', JSON.stringify(localUser));
-    setUser(localUser)
+    const stringedUser: string = JSON.stringify(localUser)
+    window.localStorage.setItem('authUser', stringedUser);
+    setUser(stringedUser)
   }
 
-  function handleLogout(){
+  const handleLogout = (): void => {
     window.localStorage.removeItem('authUser')
     setUser(null)
   }
@@ -29,7 +30,7 @@ const App = (): JSX.Element => {
     <div className="App">
       {user ? (
         <>
-          <div className="navigation-bar">
+          <div id="navigation-bar">
             <img src={logo} alt="logo" id='logo-image'/>
             <ExitToAppRoundedIcon onClick={handleLogout} color="secondary" id='logout'/>
           </div>

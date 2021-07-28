@@ -12,10 +12,10 @@ export const googleLogin = async (): Promise<User> => {
   const payload = await firebase
     .auth()
     .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-  const displayName = payload.user?.displayName
-  const photoURL = payload.user?.photoURL
-  const uid = payload.user?.uid
-  const email = payload.user?.email
+  const displayName: string | null | undefined = payload.user?.displayName
+  const photoURL: string | null | undefined = payload.user?.photoURL
+  const uid: string | null | undefined = payload.user?.uid
+  const email: string | null | undefined = payload.user?.email
   const localUser = await login({ displayName, photoURL, uid, email })
   return localUser
 };
