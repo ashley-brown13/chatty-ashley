@@ -7,7 +7,9 @@
     "build": "tsc",
     "prestart": "npm run build",
     "dev": "nodemon src/server.ts",
-    "start": "node ."
+    "start": "node .",
+    "predeploy": "npm --prefix functions run build",
+    "deploy": "firebase deploy --only functions"
   },
   "keywords": [],
   "author": "",
@@ -18,7 +20,8 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "firebase-admin": "^9.11.0"
+    "firebase-admin": "^9.11.0",
+    "firebase-functions": "^3.14.1"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",

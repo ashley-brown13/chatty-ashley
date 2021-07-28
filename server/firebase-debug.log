@@ -1,0 +1,23 @@
+[debug] [2021-07-28T12:04:37.487Z] ----------------------------------------------------------------------
+[debug] [2021-07-28T12:04:37.489Z] Command:       /Users/jordan/.nvm/versions/node/v12.20.0/bin/node /Users/jordan/.nvm/versions/node/v12.20.0/bin/firebase functions:shell
+[debug] [2021-07-28T12:04:37.489Z] CLI Version:   9.16.0
+[debug] [2021-07-28T12:04:37.490Z] Platform:      darwin
+[debug] [2021-07-28T12:04:37.490Z] Node Version:  v12.20.0
+[debug] [2021-07-28T12:04:37.491Z] Time:          Wed Jul 28 2021 05:04:37 GMT-0700 (Pacific Daylight Time)
+[debug] [2021-07-28T12:04:37.491Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-07-28T12:04:37.556Z] Object "" in "firebase.json" has unknown property: {"additionalProperty":"rewrites"}
+[debug] [2021-07-28T12:04:37.561Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-07-28T12:04:37.562Z] > authorizing via signed-in user (ashleybrown101789@gmail.com)
+[debug] [2021-07-28T12:04:37.562Z] [iam] checking project chattyashley-f6fd4 for permissions ["firebase.projects.get"]
+[debug] [2021-07-28T12:04:37.564Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/chattyashley-f6fd4:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2021-07-28T12:04:37.949Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Wed, 28 Jul 2021 12:04:37 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=179","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-07-28T12:04:38.073Z] AssertionError [ERR_ASSERTION]: expected value to be defined but got "undefined"
+    at new AssertionError (internal/assert/assertion_error.js:447:11)
+    at Object.assertDefined (/Users/jordan/.nvm/versions/node/v12.20.0/lib/node_modules/firebase-tools/lib/utils.js:331:15)
+    at FunctionsServer.start (/Users/jordan/.nvm/versions/node/v12.20.0/lib/node_modules/firebase-tools/lib/serve/functions.js:22:15)
+    at Command.exports.actionFunction [as actionFn] (/Users/jordan/.nvm/versions/node/v12.20.0/lib/node_modules/firebase-tools/lib/functionsShellCommandAction.js:48:10)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+[error] 
+[error] Error: An unexpected error has occurred.

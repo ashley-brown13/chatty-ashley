@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const firebase_functions_1 = require("firebase-functions");
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
@@ -59,4 +60,5 @@ app.use((req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
-module.exports = app;
+exports.app = firebase_functions_1.https.onRequest(app);
+//# sourceMappingURL=server.js.map

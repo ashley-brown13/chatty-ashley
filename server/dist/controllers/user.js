@@ -21,3 +21,4 @@ const addUserToDB = (userData) => __awaiter(void 0, void 0, void 0, function* ()
         .set(userData);
 });
 exports.addUserToDB = addUserToDB;
+//# sourceMappingURL=user.js.map

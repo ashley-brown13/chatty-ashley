@@ -1,3 +1,5 @@
+import * as functions from 'firebase-functions'
+import { https } from 'firebase-functions';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -54,4 +56,4 @@ app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
 });
 
-module.exports = app;
+exports.app = https.onRequest(app)

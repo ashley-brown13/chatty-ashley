@@ -25,3 +25,4 @@ admin.initializeApp({
     credential: admin.credential.cert(serviceAccountKey)
 });
 exports.default = admin;
+//# sourceMappingURL=firebaseConfig.js.map
