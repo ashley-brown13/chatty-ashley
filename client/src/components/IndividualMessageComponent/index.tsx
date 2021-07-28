@@ -1,10 +1,11 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import './IndividualMessageComponent.css';
+import firebase from '../../config/firebaseConfig'
 
 type IndMessageUserProps = {
   authUser: string;
-  message: any;
+  message: firebase.firestore.DocumentData;
 }
 
 const IndividualMessageComponent = ({authUser, message}: IndMessageUserProps ): JSX.Element => {
@@ -15,7 +16,6 @@ const IndividualMessageComponent = ({authUser, message}: IndMessageUserProps ): 
   if(createdAt){
     formattedDate = createdAt.toDate().toString().slice(4, 16)
   }
-
 
   const messageType:string = email === authEmail ? 'owner' : 'recipient';
 
