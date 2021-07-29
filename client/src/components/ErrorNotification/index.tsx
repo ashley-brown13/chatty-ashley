@@ -14,7 +14,6 @@ const ErrorNotification = ({error, setError}: ErrorProps ): JSX.Element => {
     parsedError = JSON.parse(error)
   }
 
-
   const handleClose = () => {
     setError(null);
   }
