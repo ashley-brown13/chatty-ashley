@@ -12,7 +12,7 @@ type ErrorProps = {
 const ErrorNotification = ({error, setError}: ErrorProps ): JSX.Element => {
 
   const handleClose = () => {
-    setError(null)
+    setError(null);
   }
 
   return (
@@ -37,4 +37,4 @@ const ErrorNotification = ({error, setError}: ErrorProps ): JSX.Element => {
   )
 }
 
-export default ErrorNotification
+export default ErrorNotification;

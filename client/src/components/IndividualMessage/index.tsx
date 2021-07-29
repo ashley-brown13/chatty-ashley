@@ -9,12 +9,12 @@ type IndMessageUserProps = {
 }
 
 const IndividualMessage = ({authUser, message}: IndMessageUserProps ): JSX.Element => {
-  const { authEmail } = JSON.parse(authUser)
+  const { authEmail } = JSON.parse(authUser);
 
   const { displayName, email, photoURL, messageBody, createdAt } = message;
   let formattedDate: string | null = null
   if(createdAt){
-    formattedDate = createdAt.toDate().toString().slice(4, 16)
+    formattedDate = createdAt.toDate().toString().slice(4, 16);
   }
 
   const messageType:string = email === authEmail ? 'owner' : 'recipient';
@@ -30,7 +30,7 @@ const IndividualMessage = ({authUser, message}: IndMessageUserProps ): JSX.Eleme
           <p id='ind-message-message-body'>{messageBody}</p>
       </div>
     </div>
-  )
+  );
 }
 
-export default IndividualMessage
+export default IndividualMessage;

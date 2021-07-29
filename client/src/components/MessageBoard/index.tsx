@@ -21,10 +21,10 @@ const MessageBoard = ({authUser, setError}: MessageBoardProps): JSX.Element => {
   const handleScroll = (e) => {
     const bottom: boolean = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
     if (bottom) {
-      setHide(true)
+      setHide(true);
     }
-    if(!bottom && hide === true){
-      setHide(false)
+    if(!bottom && hide){
+      setHide(false);
     }
   }
 
@@ -32,7 +32,7 @@ const MessageBoard = ({authUser, setError}: MessageBoardProps): JSX.Element => {
     setError({
       title: "Server Error",
       description: "There was an error on the server. Messages cannot be loaded."
-    })
+    });
   }
 
   const scrollToBottom = () => {
@@ -40,8 +40,8 @@ const MessageBoard = ({authUser, setError}: MessageBoardProps): JSX.Element => {
   }
 
   useEffect(() => {
-    scrollToBottom()
-  }, [listOfMessages])
+    scrollToBottom();
+  }, [listOfMessages]);
 
   return (
     <div className="message-board">
@@ -66,4 +66,4 @@ const MessageBoard = ({authUser, setError}: MessageBoardProps): JSX.Element => {
   );
 }
 
-export default MessageBoard
+export default MessageBoard;

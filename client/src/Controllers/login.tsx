@@ -17,7 +17,7 @@ export const googleLogin = async (): Promise<User > => {
   const uid: string | null | undefined = payload.user?.uid
   const email: string | null | undefined = payload.user?.email
   const localUser = await login({ displayName, photoURL, uid, email })
-  return localUser
+  return localUser;
 };
 
 async function login(user): Promise<User>{
@@ -29,13 +29,13 @@ async function login(user): Promise<User>{
     body: JSON.stringify(user),
   });
   if(!request.ok){
-    return {}
+    return {};
   }
   const { displayName, email, photoURL } = user
   const localUser:User = {
     name: displayName,
     authEmail: email,
     photo: photoURL
-  }
-  return localUser
+  };
+  return localUser;
 }

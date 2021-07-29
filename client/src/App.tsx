@@ -24,7 +24,7 @@ const App = (): JSX.Element => {
       setError({
         title: "Login Error",
         description: "The system was unable to log you in."
-      })
+      });
     } else {
       const stringedUser: string = JSON.stringify(localUser);
       window.localStorage.setItem('authUser', stringedUser);

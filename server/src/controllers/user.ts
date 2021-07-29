@@ -1,5 +1,6 @@
 import admin from '../config/firebaseConfig';
-import { Request, Response, NextFunction } from 'express';
+
+const firestore: admin.firestore.Firestore = admin.firestore();
 
 interface UserData {
   displayName: string;
@@ -9,8 +10,14 @@ interface UserData {
 }
 
 export const addUserToDB = async (userData:UserData ) => {
-    await admin.firestore()
-      .collection('users')
-      .doc(userData.uid)
-      .set(userData)
+  await admin.firestore()
+    .collection('users')
+    .doc(userData.uid)
+    .set(userData);
+}
+
+export const checkIfUserExistsInDB = async (uid: string) => {
+  const firebaseUser = await firestore.collection("users").doc(uid);
+  const userDocument = await firebaseUser.get();
+  return userDocument;
 }

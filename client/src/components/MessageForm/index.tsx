@@ -13,20 +13,20 @@ type MessageFormProps = {
 type FormText = string
 
 const MessageForm = ({authUser, setError}: MessageFormProps): JSX.Element => {
-  const [formText, setFormText] = useState<FormText>('')
-  const { name, photo, authEmail } = JSON.parse(authUser)
+  const [formText, setFormText] = useState<FormText>('');
+  const { name, photo, authEmail } = JSON.parse(authUser);
 
   const addMessage = async (e): Promise<void> => {
     e.preventDefault();
-    const token: string|undefined = await firebase.auth().currentUser?.getIdToken()
-    const sent = await sendMessage({formText, name, photo, authEmail, token})
+    const token: string|undefined = await firebase.auth().currentUser?.getIdToken();
+    const sent = await sendMessage({formText, name, photo, authEmail, token});
     if(sent){
       setFormText('');
     } else {
       setError({
         title: "Server Error",
         description: "There was an error on the server. The system was unable to send your message."
-      })
+      });
     }
   }
 

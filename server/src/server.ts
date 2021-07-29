@@ -1,11 +1,12 @@
-import * as functions from 'firebase-functions'
+import * as functions from 'firebase-functions';
 import { https } from 'firebase-functions';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import firebaseAdmin from './config/firebaseConfig';
-import { addUserToDB } from './controllers/user';
+import { addUserToDB, checkIfUserExistsInDB } from './controllers/user';
+import { addMessageToDB } from './controllers/message'
 
 const app = express();
 const port: number = 5000;
@@ -14,34 +15,26 @@ app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
 
-const firestore: firebaseAdmin.firestore.Firestore = firebaseAdmin.firestore();
-const messageCollection: firebaseAdmin.firestore.CollectionReference = firestore.collection('messages');
-
 app.post('/api/login', async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  const userId: string = req.body.uid;
-  const userData = req.body;
-  const firebaseUser = firestore.collection("users").doc(userId);
-  await firebaseUser.get().then((doc) => {
-    if (!doc.exists) {
-      addUserToDB(userData)
+  try {
+    const { displayName, photoURL, uid, email } = req.body;
+    const userDocument = await checkIfUserExistsInDB(uid);
+    if (!userDocument.exists) {
+      await addUserToDB({ displayName, photoURL, uid, email });
     }
-  });
-  return res.json({success: true})
+    return res.json({success: true})
+  } catch (e) {
+    return next();
+  }
 });
 
 app.post('/api/messages/send', async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-  const { formText, name, photo, authEmail, token } = req.body;
-  await firebaseAdmin
-    .auth()
-    .verifyIdToken(token)
-  await messageCollection.add({
-    messageBody: formText,
-    createdAt: firebaseAdmin.firestore.FieldValue.serverTimestamp(),
-    displayName: name,
-    photoURL: photo,
-    email: authEmail
-  })
-  return res.json({success: true})
+  try {
+    await addMessageToDB(req.body);
+    return res.json({success: true});
+  } catch (e) {
+    return next();
+  }
 })
 
 app.use((req: express.Request, res: express.Response) => {
@@ -56,4 +49,4 @@ app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
 });
 
-exports.app = https.onRequest(app)
+exports.app = https.onRequest(app);

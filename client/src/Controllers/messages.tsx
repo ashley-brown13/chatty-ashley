@@ -1,4 +1,4 @@
-import firebase from '../config/firebaseConfig'
+import firebase from '../config/firebaseConfig';
 import 'firebase/auth';
 import 'firebase/firestore';
 
@@ -19,9 +19,9 @@ export const sendMessage = async (message: Message): Promise<boolean> => {
     body: JSON.stringify(message),
   });
   if(!request.ok){
-    return false
+    return false;
   }
-  return true
+  return true;
 }
 
 const firestore: firebase.firestore.Firestore = firebase.firestore();
