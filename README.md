@@ -11,8 +11,8 @@ https://chattyashley-f6fd4.web.app/
 * Express
 * React
 * Firebase
-** Firestore for database
-** Firebase Admin SDK, Cloud Functions, Authentication, Hosting
+  * Firestore for database
+  * Firebase Admin SDK, Cloud Functions, Authentication, Hosting
 * Typescript
 
 ## Important Packages
@@ -20,3 +20,31 @@ https://chattyashley-f6fd4.web.app/
 * CORS
 * Lodash
 * React Firebase Hooks
+
+## Installation
+
+1. Clone the repository
+
+    `git clone https://github.com/ashley-brown13/chatty-ashley.git`
+    
+2. Install dependencies in terminal
+    ```
+    cd client && npm install
+    cd server && npm install
+    ```
+3. Signup for Firebase
+4. Create a Firebase Project
+5. In your Firebase Project Overview, get started by adding Firebase to your app
+    1. Register your app
+    2. Add Firebase SDK
+6. Use your firebaseConfig details to create an .env file in the root of the client folder with the following:
+    ```
+    REACT_APP_API_KEY=<<apiKey>>
+    REACT_APP_AUTH_DOMAIN=<<authDomain>>
+    REACT_APP_PROJECT_ID=<<projectId>>
+    REACT_APP_STORAGE_BUCKET=<<storageBucket>>
+    REACT_APP_MESSAGING_SENDER_ID=<<messagingSenderId>>
+    REACT_APP_APP_ID=<<appId>>
+    REACT_APP_MEASUREMENT_ID=<<measurementId>>
+    ```
+    
