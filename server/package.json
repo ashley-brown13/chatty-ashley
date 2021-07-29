@@ -8,7 +8,7 @@
     "prestart": "npm run build",
     "dev": "nodemon src/server.ts",
     "start": "node .",
-    "predeploy": "npm --prefix functions run build",
+    "predeploy": "npm --prefix server run build",
     "deploy": "firebase deploy --only functions"
   },
   "keywords": [],

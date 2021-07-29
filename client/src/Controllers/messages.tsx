@@ -11,13 +11,16 @@ interface Message {
 }
 
 export const sendMessage = async (message: Message): Promise<boolean> => {
-  await fetch(`/api/messages/send`, {
+  const request = await fetch(`/api/messages/send`, {
     method: "POST",
     headers: {
       "Content-type": "application/json"
     },
     body: JSON.stringify(message),
   });
+  if(!request.ok){
+    return false
+  }
   return true
 }
 

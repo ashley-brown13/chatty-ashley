@@ -7,13 +7,14 @@ import {grabMessages} from '../../Controllers/messages'
 
 type MessageBoardProps = {
   authUser: string;
+  setError: (error) => void;
 }
 
 type Hide = boolean
 
-const MessageBoard = ({authUser}: MessageBoardProps): JSX.Element => {
+const MessageBoard = ({authUser, setError}: MessageBoardProps): JSX.Element => {
   const scroll = useRef();
-  const [listOfMessages]= useCollectionData(grabMessages);
+  const [listOfMessages, loading, error]= useCollectionData(grabMessages);
   const [hide, setHide] = useState<Hide>(true)
 
   const handleScroll = (e) => {
@@ -24,6 +25,13 @@ const MessageBoard = ({authUser}: MessageBoardProps): JSX.Element => {
     if(!bottom && hide === true){
       setHide(false)
     }
+  }
+
+  if(error){
+    setError({
+      title: "Server Error",
+      description: "There was an error on the server. Messages cannot be loaded."
+    })
   }
 
   const scrollToBottom = () => {

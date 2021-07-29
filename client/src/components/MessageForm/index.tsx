@@ -7,11 +7,12 @@ import './MessageForm.css'
 
 type MessageFormProps = {
   authUser: string;
+  setError: (error) => void;
 }
 
 type FormText = string
 
-const MessageForm = ({authUser}: MessageFormProps): JSX.Element => {
+const MessageForm = ({authUser, setError}: MessageFormProps): JSX.Element => {
   const [formText, setFormText] = useState<FormText>('')
   const { name, photo, authEmail } = JSON.parse(authUser)
 
@@ -21,6 +22,11 @@ const MessageForm = ({authUser}: MessageFormProps): JSX.Element => {
     const sent = await sendMessage({formText, name, photo, authEmail, token})
     if(sent){
       setFormText('');
+    } else {
+      setError({
+        title: "Server Error",
+        description: "There was an error on the server. The system was unable to send your message."
+      })
     }
   }
 

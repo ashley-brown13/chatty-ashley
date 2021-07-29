@@ -21,13 +21,16 @@ export const googleLogin = async (): Promise<User > => {
 };
 
 async function login(user): Promise<User>{
-  await fetch(`/api/login`, {
+  const request = await fetch(`/api/login`, {
     method: "POST",
     headers: {
       "Content-type": "application/json"
     },
     body: JSON.stringify(user),
   });
+  if(!request.ok){
+    return {}
+  }
   const { displayName, email, photoURL } = user
   const localUser:User = {
     name: displayName,
