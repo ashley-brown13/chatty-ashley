@@ -151,7 +151,7 @@ One of my favorite Material-UI's components is the Dialog. It allowed me to crea
 ## 3rd Party API
 I really enjoyed interacting with the Firebase API. Though there are a lot of configurations at the start, their functions are very intuitive, and can be used on both client and server sides. Though I used a server for this project as the guidelines require, I actually think that I would create a serverless version of this project if I was to re-factor it. Because Firebase offers options like OAUTH and functions that allow API calls on the client side, I think the application would be more efficient if it did not have to hit the server first.
 
-This is a snapshot of the response of my GET request to the Firebase API ( https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel), which returns the messages from my Firestore database:
+This is a snapshot of the response of my GET request https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel, which returns the messages from my Firestore database:
 
 ```
 100
