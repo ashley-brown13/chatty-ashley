@@ -204,9 +204,12 @@ One of my favorite Material-UI's components is the Dialog. It allowed me to crea
 
 ## Reusable Components
 
-1. ErrorNotification: Makes the error specific to login error, send message error, or message loading error.
-2. IndidvidualMessage:
+1. ErrorNotification Component: Makes the error specific to login error, send message error, or message loading error.
+2. IndividualMessage Component: Creates each individual message with the messageBody, user avatar, date, and display name. It utilizes the user's email to separate and organize the messages based on if the user is the sender or a recipient. 
 
+<p align="center">
+  <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.58.43%20AM.png" alt="individual message reusable component">
+</p>
 
 ## My Express Server
 
@@ -299,6 +302,8 @@ This is a snapshot of the response of my GET request https://firestore.googleapi
 }
 ]]]797
 ```
+
+## 
     
  
     
