@@ -100,12 +100,32 @@ The landing page allows users to sign-in to the application with their Google ac
   <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.39.57%20AM.png" alt="login page">
 </p>
 
+<p align="center">
+  <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%205.45.36%20AM.png" alt="auth">
+</p>
+
 ### Chat Page
 
 The Chat Page includes the live message board and form for sending your message. The message board scroll is programmed to update each time a message is added, so that users always know when a new message has arrived. In addition, I utilized Lodash and a useRef hook to implement a 'Scroll to Bottom' button that reveals itself when a user moves from the bottom view of the message board.
 
 <p align="center">
   <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.41.23%20AM.png" alt="chat page">
+</p>
+
+### Error Modals
+
+Utilizing Material-UI's Dialog component, I created a reusable error modal that pop-ups if there is an issue with login or sending/receiving messages.
+
+<p align="center">
+  <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%205.00.08%20AM.png" alt="dialog code">
+</p>
+
+<p align="center">
+  <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.39.37%20AM.png" alt="login error">
+</p>
+
+<p align="center">
+  <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.42.17%20AM.png" alt="server error">
 </p>
 
 
