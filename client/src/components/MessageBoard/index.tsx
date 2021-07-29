@@ -14,7 +14,7 @@ type MessageBoardProps = {
 type Hide = boolean
 
 const MessageBoard = ({authUser, setError}: MessageBoardProps): JSX.Element => {
-  const scroll = useRef();
+  const scroll = useRef<HTMLDivElement>(null);
   const [listOfMessages, loading, error]= useCollectionData(grabMessages);
   const [hide, setHide] = useState<Hide>(true)
 
@@ -29,14 +29,15 @@ const MessageBoard = ({authUser, setError}: MessageBoardProps): JSX.Element => {
   }
 
   if(error){
-    setError({
+    const stringedError = JSON.stringify({
       title: "Server Error",
-      description: "There was an error on the server. Messages cannot be loaded."
-    });
+      description: "There was an error on the server. The system was unable to send your message."
+    })
+    setError(stringedError);
   }
 
   const scrollToBottom = () => {
-    scroll.current.scrollIntoView({ behavior: 'smooth' });
+    scroll?.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
   useEffect(() => {

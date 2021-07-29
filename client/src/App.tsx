@@ -8,23 +8,19 @@ import logo from './images/ChattyAshleyLogo.png';
 import {googleLogin} from './Controllers/login';
 import ErrorNotification from './components/ErrorNotification';
 
-interface Error {
-  title?: string;
-  description?: string;
-}
-
 const App = (): JSX.Element => {
   const authUser = window.localStorage.getItem('authUser');
   const [user, setUser] = useState<string | null>(null || authUser);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async (): Promise<void> => {
     const localUser = await googleLogin();
     if(!localUser.name){
-      setError({
+      const stringedError = JSON.stringify({
         title: "Login Error",
         description: "The system was unable to log you in."
-      });
+      })
+      setError(stringedError);
     } else {
       const stringedUser: string = JSON.stringify(localUser);
       window.localStorage.setItem('authUser', stringedUser);

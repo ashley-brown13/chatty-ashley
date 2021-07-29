@@ -2,14 +2,18 @@ import React from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@material-ui/core';
 
 type ErrorProps = {
-  error: {
-    title: string;
-    description: string;
-  }
+  error: string | null;
   setError: (error) => void;
 }
 
 const ErrorNotification = ({error, setError}: ErrorProps ): JSX.Element => {
+
+  let parsedError;
+
+  if(error !== null){
+    parsedError = JSON.parse(error)
+  }
+
 
   const handleClose = () => {
     setError(null);
@@ -22,10 +26,10 @@ const ErrorNotification = ({error, setError}: ErrorProps ): JSX.Element => {
       aria-labelledby="error-title"
       aria-describedby="error-description"
     >
-    <DialogTitle id="error-title">{error?.title}</DialogTitle>
+    <DialogTitle id="error-title">{parsedError?.title}</DialogTitle>
     <DialogContent>
       <DialogContentText id="error-description">
-        {error?.description}
+        {parsedError?.description}
       </DialogContentText>
     </DialogContent>
     <DialogActions>

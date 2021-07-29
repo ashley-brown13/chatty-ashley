@@ -23,10 +23,11 @@ const MessageForm = ({authUser, setError}: MessageFormProps): JSX.Element => {
     if(sent){
       setFormText('');
     } else {
-      setError({
+      const stringedError = JSON.stringify({
         title: "Server Error",
         description: "There was an error on the server. The system was unable to send your message."
-      });
+      })
+      setError(stringedError);
     }
   }
 
