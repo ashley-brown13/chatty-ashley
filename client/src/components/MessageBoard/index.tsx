@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { debounce } from 'lodash';
 import {Box, Button} from '@material-ui/core';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import IndividualMessage from '../IndividualMessage';
@@ -25,6 +26,7 @@ const MessageBoard = ({authUser, setError}: MessageBoardProps): JSX.Element => {
     if(!bottom && hide === true){
       setHide(false)
     }
+    console.log("here")
   }
 
   if(error){
@@ -55,7 +57,7 @@ const MessageBoard = ({authUser, setError}: MessageBoardProps): JSX.Element => {
         height="90%"
         width="100%"
         id="message-board-box"
-        onScroll={handleScroll}
+        onScroll={debounce(handleScroll, 500)}
       >
         {!hide && <span id="positioned"><Button hidden={hide} variant="contained" color="secondary" onClick={scrollToBottom}>Scroll to Bottom</Button></span>}
         {listOfMessages && listOfMessages.map(message => <IndividualMessage key={message.createdAt} message={message} authUser={authUser} />)}
