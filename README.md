@@ -205,7 +205,7 @@ One of my favorite Material-UI's components is the Dialog. It allowed me to crea
 ## Reusable Components
 
 1. ErrorNotification Component: Makes the error specific to login error, send message error, or message loading error.
-2. IndividualMessage Component: Creates each individual message with the messageBody, user avatar, date, and display name. It utilizes the user's email to separate and organize the messages based on if the user is the sender or a recipient. 
+2. IndividualMessage Component: Creates each individual message with the messageBody, user avatar, date, and display name. It utilizes the user's email to separate and organize the messages based on if the user is the owner or a recipient. 
 
 <p align="center">
   <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.58.43%20AM.png" alt="individual message reusable component">
@@ -303,7 +303,13 @@ This is a snapshot of the response of my GET request https://firestore.googleapi
 ]]]797
 ```
 
-## 
+## MVC Architectural Pattern
+
+I utilized the MVC architectural pattern, which allowed me to separate concerns and keep a well organized file structure. On the client side, I separated my API calls into controller login and message files, so my view was not encumbered by server-side knowledge (with the exception of my call to grab the messages as that needed to be in the component to implement the real time reception of the messages). I also created controller functions on the backend. The server user controller contains the logic of checking if users exist in the database, as well as adding them if they do not. In the message controller, I housed the function to verify the user's ID token, and upon acceptance of that, add their message to the database. I really enjoy how controllers keep my code more concise and readable, as well as making it easier to find/change code in the future for refactoring and expanding.
+
+
+
+
     
  
     
