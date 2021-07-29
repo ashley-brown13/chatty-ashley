@@ -26,7 +26,6 @@ const MessageBoard = ({authUser, setError}: MessageBoardProps): JSX.Element => {
     if(!bottom && hide === true){
       setHide(false)
     }
-    console.log("here")
   }
 
   if(error){
@@ -53,7 +52,7 @@ const MessageBoard = ({authUser, setError}: MessageBoardProps): JSX.Element => {
         display="flex"
         flexDirection="column"
         p="20px"
-        bgcolor="#F5F5F5"
+        bgcolor="black"
         height="90%"
         width="100%"
         id="message-board-box"
