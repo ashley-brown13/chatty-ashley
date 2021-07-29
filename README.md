@@ -47,7 +47,7 @@ https://chattyashley-f6fd4.web.app/
     REACT_APP_APP_ID=<<appId>>
     REACT_APP_MEASUREMENT_ID=<<measurementId>>
     ```
- 7. In your Firebase Console:
+7. In your Firebase Console:
     1. Select Authentication from the menu: Enable Google as a Sign-in method
     2. Select Firestore Database: Create a database
         1. Enter the Rules tab: Replace with the following & publish
@@ -77,7 +77,16 @@ https://chattyashley-f6fd4.web.app/
                 email: <<same as above>>
                 messageBody: <<make up a message>>
                 ```
-        
+          3. Select the Gears icon right next to Project Overview, select Project Settings, go to Service Accounts tab
+              1. In the Firebase Admin SDK menu: Generate new private key
+              2. Download & Rename "serviceAccountKey.json"
+              3. Place this file in server/src/config 
+
+8. Start the server & client in the terminal:
+    ```
+    cd client && npm run dev
+    cd server && npm start
+    ```
         
     
  
