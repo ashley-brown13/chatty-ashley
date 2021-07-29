@@ -90,7 +90,7 @@ https://chattyashley-f6fd4.web.app/
     
 # High Level Overview
 
-To build ChattyAshley, I utilized Express, React, and Firebase. I used Firebase as my 3rd party API (which hits their provided database, Firestore) as it allows real time updates; I also decided to utilize it's other features, which include authentication and hosting. In addition, I used Typescript throughout the project to reduce errors. It was my first time using both Typescript and most of the Firebase features. Though it was challenging, I really feel happy with the result, and I am so happy I got to learn these technlogies through doing, as it is my preferred way to learn. 
+To build ChattyAshley, I utilized Express for my backend, React with Typescript for my frontend, and Firebase for my database/3rd party API. I used Firebase as it allows real time updates without having to implement my own WebSockets; I also decided to utilize it's other features, which include authentication and hosting. It was my first time using both Typescript and most of the Firebase features. Though it was challenging, I really feel happy with the result, and I am so glad I got to learn these technlogies through project-based learning, as it is my preferred way to learn. 
 
 ## Components
 
@@ -114,9 +114,27 @@ The Chat Page includes the live message board and form for sending your message.
   <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.41.23%20AM.png" alt="chat page">
 </p>
 
-### Error Modals
+## User Interactions
 
-Utilizing Material-UI's Dialog component, I created a reusable error modal that pop-ups if there is an issue with login or sending/receiving messages.
+1. Login (Signs-up and new users into my 'users' collection)
+2. Logout
+3. Send Message
+4. Read Messages
+5. Scroll to Bottom Feature
+6. Accepting error notifications if necessary
+
+## UI Design
+To implement good accessibility for a variety of users, I made sure to implement high color contrast between the text and it's background color. I also tried to use explicit descriptions on buttons and forms so as not to confuse readers about the basic functions of the website.
+
+Material-UI provided me with a lot of well-designed React UI components. I utilized the following in my application:
+* Box
+* Dialog
+* Icons
+* Button
+* TextField
+* Avatar
+
+One of my favorite Material-UI's components is the Dialog. It allowed me to create a clean, reusable error modal that pop-ups if there is an issue with login or sending/receiving messages.
 
 <p align="center">
   <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%205.00.08%20AM.png" alt="dialog code">
@@ -130,30 +148,8 @@ Utilizing Material-UI's Dialog component, I created a reusable error modal that 
   <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.42.17%20AM.png" alt="server error">
 </p>
 
-## User Interactions
-
-1. Login (Signs-up and new users into my 'users' collection)
-2. Send Message
-3. Read Messages
-4. Scroll to Bottom Feature
-5. Logout
-6. Accepting error notifications if necessary
-
-
-## UI Design
-To implement good accessibility for a variety of users, I made sure to implement high color contrast between the text and it's background color. I also tried to use explicit descriptions on buttons and forms so as not to confuse readers about the basic functions of the website.
-
-Material-UI provided me with a lot of well-designed React UI components. I utilized the following in my application:
-* Box
-* Dialog
-* Icons
-* Button
-* TextField
-* Avatar
-
 ## 3rd Party API
-I really enjoyed interacting with the Firebase API. Though there are a lot of configurations at the start, their functions are very intuitive, and can be used on both client and server sides. Though I used a server for this project as the guidelines require, I actually think that I would create a serverless version of this project if I was to re-factor it. Because Firebase offers options like OAUTH and functions that allow API calls on the client side, I think the application would be more efficient and faster if it did not have to hit the server first.
-
+I really enjoyed interacting with the Firebase API. Though there are a lot of configurations at the start, their functions are very intuitive, and can be used on both client and server sides. Though I used a server for this project as the guidelines require, I actually think that I would create a serverless version of this project if I was to re-factor it. Because Firebase offers options like OAUTH and functions that allow API calls on the client side, I think the application would be more efficient if it did not have to hit the server first.
 
 This is a snapshot of the response of my GET request to the Firebase API ( https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel), which returns the messages from my Firestore database:
 
