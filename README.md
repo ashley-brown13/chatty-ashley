@@ -91,6 +91,54 @@ https://chattyashley-f6fd4.web.app/
 ## High Level Overview
 
 Chatty App 
+
+
+This is a snapshot of my GET request to the Firebase API ( https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel), which returns the messages from my Firestore database:
+
+```
+100
+
+[[1,[{
+  "targetChange": {
+    "targetChangeType": "ADD",
+    "targetIds": [
+      2
+    ]
+  }
+}
+]]]811
+
+[[2,[{
+  "documentChange": {
+    "document": {
+      "name": "projects/chattyashley-f6fd4/databases/(default)/documents/messages/N4Ozn9rwSmh5R0ccgRKO",
+      "fields": {
+        "createdAt": {
+          "timestampValue": "2021-07-29T11:44:22.895Z"
+        },
+        "photoURL": {
+          "stringValue": "https://lh3.googleusercontent.com/a-/AOh14GiDduMfVBkFNNtHDYxZe_TaGlgefYAgVxs4LEXHzQ=s96-c"
+        },
+        "messageBody": {
+          "stringValue": "I hear you running!"
+        },
+        "email": {
+          "stringValue": "ashleybrown101789@gmail.com"
+        },
+        "displayName": {
+          "stringValue": "Ashley Brown"
+        }
+      },
+      "createTime": "2021-07-29T11:44:22.918706Z",
+      "updateTime": "2021-07-29T11:44:22.918706Z"
+    },
+    "targetIds": [
+      2
+    ]
+  }
+}
+]]]797
+```
     
  
     
