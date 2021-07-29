@@ -87,7 +87,10 @@ https://chattyashley-f6fd4.web.app/
     cd client && npm run dev
     cd server && npm start
     ```
-        
+    
+## High Level Overview
+
+Chatty App 
     
  
     
