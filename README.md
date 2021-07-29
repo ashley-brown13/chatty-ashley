@@ -320,7 +320,7 @@ I utilized the MVC architectural pattern, which allowed me to separate concerns 
 </p>
 
 <p align="center">
-  <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%208.24.43%20AM.png" alt="server user controller">
+  <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%208.26.54%20AM.png" alt="server user controller">
 </p>
 
 
