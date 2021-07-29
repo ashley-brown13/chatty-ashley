@@ -96,7 +96,7 @@ To build ChattyAshley, I utilized Express for my backend, React with Typescript 
 
 ### Landing Page/Authentication
 
-The landing page allows users to sign-in to the application with their Google accounts. If I was to build this component out further, I would include other OAUTH sign-ins from Facebook and Github.
+The landing page allows users to sign in to the application with their Google accounts. If I was to build this component out further, I would also users to sign in through GitHub and Facebook.
 
 <p align="center">
   <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.39.57%20AM.png" alt="login page">
@@ -108,7 +108,9 @@ The landing page allows users to sign-in to the application with their Google ac
 
 ### Chat Page
 
-The Chat Page includes the live message board and form for sending your message. The message board scroll is programmed to update each time a message is added, so that users always know when a new message has arrived. In addition, I utilized Lodash and a react hooks to implement a 'Scroll to Bottom' button that reveals itself when a user moves from the bottom view of the message board.
+The Chat Page includes the live message board and the form for sending your message. The message board scroll is programmed to update each time a message is added, so that users always know when a new message has arrived. In addition, I utilized the Lodash debounce function and react hooks to implement a 'Scroll to Bottom' button that reveals itself when a user moves from the bottom view of the message board.
+
+Though this chat application currently only has one channel, if I was to continue building it out, I would allow users to create additional channels. This could be implemented with Firestore subcollections. I would also add a sidebar that show all users that are currently present in the app.
 
 <p align="center">
   <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.41.23%20AM.png" alt="chat page">
@@ -162,7 +164,7 @@ The Chat Page includes the live message board and form for sending your message.
 
 ## User Interactions
 
-1. Login (Signs-up and new users into my 'users' collection)
+1. Login 
 2. Logout
 3. Send Message
 4. Read Messages
@@ -199,8 +201,34 @@ One of my favorite Material-UI's components is the Dialog. It allowed me to crea
 As this was a small application, my server only required two routes:
 
 * api/login
-  * This route logs the user into my application. If it is their first time logging in their information gets 
-    
+  * This route logs the user into my application. If it is their first time logging in their information gets saved to my 'users' collection.
+
+* api/messages/send
+  * This route sends the user message to my Firestore 'messages' collection. To add extra security, I leveraged Firebase ID tokens.
+
+## My Database
+
+I utilized a Firestore database, which is a NoSQL database. I have two collections: 
+
+1. users
+    ```
+    |Column Name  | Data Type   | 
+    | ----------- | ----------- | 
+    | uid         | string      | 
+    | displayName | string      | 
+    | email       | string      | 
+    | photoURL    | string      |  
+    ```
+2. messages
+    ```
+    |Column Name  | Data Type   | 
+    | ----------- | ----------- | 
+    | messageBody | string      | 
+    | displayName | string      | 
+    | email       | string      | 
+    | photoURL    | string      |  
+    | createdAt   | timestamp   | 
+    ```
 
 ## 3rd Party API
 I really enjoyed interacting with the Firebase API. Though there are a lot of configurations at the start, their functions are very intuitive, and can be used on both client and server sides. Though I used a server for this project as the guidelines require, I actually think that I would create a serverless version of this project if I was to re-factor it. Because Firebase offers options like OAUTH and functions that allow API calls on the client side, I think the application would be more efficient if it did not have to hit the server first.
