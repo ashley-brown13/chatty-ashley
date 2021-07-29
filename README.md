@@ -94,9 +94,9 @@ To build ChattyAshley, I utilized Express for my backend, React with Typescript 
 
 ## Components
 
-### Landing Page/Authentication
+### LoginPage with OAUTH Authentication
 
-The landing page allows users to sign in to the application with their Google accounts. If I was to build this component out further, I would also users to sign in through GitHub and Facebook.
+The landing page is essentially a login page that allows users to sign in to the application with their Google accounts. All users are required to login before seeing the main chat page. If I was to build this component out further, I would also users to sign in through GitHub and Facebook.
 
 <p align="center">
   <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.39.57%20AM.png" alt="login page">
@@ -106,9 +106,11 @@ The landing page allows users to sign in to the application with their Google ac
   <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%205.45.36%20AM.png" alt="auth">
 </p>
 
-### Chat Page
+### Chat Page: MessageBoard/MessageForm/IndividialMessage
 
 The Chat Page includes the live message board and the form for sending your message. The message board scroll is programmed to update each time a message is added, so that users always know when a new message has arrived. In addition, I utilized the Lodash debounce function and react hooks to implement a 'Scroll to Bottom' button that reveals itself when a user moves from the bottom view of the message board.
+
+As generally standard for chat applications, I placed the sender's messages on the right of the message board, and the other users' messages on the left.
 
 Though this chat application currently only has one channel, if I was to continue building it out, I would allow users to create additional channels. This could be implemented with Firestore subcollections. I would also add a sidebar that show all users that are currently present in the app.
 
@@ -162,6 +164,18 @@ Though this chat application currently only has one channel, if I was to continu
   );
   ```
 
+### ErrorNotification
+
+Pop-up modal that appears if there is a login or server error.
+
+<p align="center">
+  <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.39.37%20AM.png" alt="login error">
+</p>
+
+<p align="center">
+  <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.42.17%20AM.png" alt="server error">
+</p>
+
 ## User Interactions
 
 1. Login 
@@ -175,12 +189,12 @@ Though this chat application currently only has one channel, if I was to continu
 To implement good accessibility for a variety of users, I made sure to implement high color contrast between the text and it's background color. I also tried to use explicit descriptions on buttons and forms so as not to confuse readers about the basic functions of the website.
 
 Material-UI provided me with a lot of well-designed React UI components. I utilized the following in my application:
-* Box
-* Dialog
-* Icons
-* Button
-* TextField
-* Avatar
+* Box: Scrollable container for the message board.
+* Dialog: Error notifications
+* Icons: Icon within Send Message Button
+* Button: Login, Logout, Scroll to Bottom, Send
+* TextField: Form for writing message
+* Avatar: Shows user photos to the right or left of messages (depending on if you are sender or recipient)
 
 One of my favorite Material-UI's components is the Dialog. It allowed me to create a clean, reusable error modal that pop-ups if there is an issue with login or sending/receiving messages.
 
@@ -188,13 +202,11 @@ One of my favorite Material-UI's components is the Dialog. It allowed me to crea
   <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%205.00.08%20AM.png" alt="dialog code">
 </p>
 
-<p align="center">
-  <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.39.37%20AM.png" alt="login error">
-</p>
+## Reusable Components
 
-<p align="center">
-  <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.42.17%20AM.png" alt="server error">
-</p>
+1. ErrorNotification: Makes the error specific to login error, send message error, or message loading error.
+2. IndidvidualMessage:
+
 
 ## My Express Server
 
