@@ -108,11 +108,57 @@ The landing page allows users to sign-in to the application with their Google ac
 
 ### Chat Page
 
-The Chat Page includes the live message board and form for sending your message. The message board scroll is programmed to update each time a message is added, so that users always know when a new message has arrived. In addition, I utilized Lodash and a useRef hook to implement a 'Scroll to Bottom' button that reveals itself when a user moves from the bottom view of the message board.
+The Chat Page includes the live message board and form for sending your message. The message board scroll is programmed to update each time a message is added, so that users always know when a new message has arrived. In addition, I utilized Lodash and a react hooks to implement a 'Scroll to Bottom' button that reveals itself when a user moves from the bottom view of the message board.
 
 <p align="center">
   <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.41.23%20AM.png" alt="chat page">
 </p>
+
+```
+  const scroll = useRef<HTMLDivElement>(null);
+  const [listOfMessages, loading, error]= useCollectionData(grabMessages);
+  const [hide, setHide] = useState<Hide>(true)
+
+  const handleScroll = (e) => {
+    const bottom: boolean = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
+    if (bottom) {
+      setHide(true);
+    }
+    if(!bottom && hide){
+      setHide(false);
+    }
+  }
+
+  const scrollToBottom = () => {
+    scroll?.current?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [listOfMessages]);
+
+  return (
+    <div className="message-board">
+      <Box
+        border={2}
+        borderColor="text.primary"
+        borderRadius={16}
+        display="flex"
+        flexDirection="column"
+        p="20px"
+        bgcolor="black"
+        height="90%"
+        width="100%"
+        id="message-board-box"
+        onScroll={debounce(handleScroll, 500)}
+      >
+        {!hide && <span id="positioned"><Button hidden={hide} variant="contained" color="secondary" onClick={scrollToBottom}>Scroll to Bottom</Button></span>}
+        {listOfMessages && listOfMessages.map(message => <IndividualMessage key={message.createdAt} message={message} authUser={authUser} />)}
+        <span ref={scroll}></span>
+      </Box>
+    </div>
+  );
+  ```
 
 ## User Interactions
 
@@ -147,6 +193,14 @@ One of my favorite Material-UI's components is the Dialog. It allowed me to crea
 <p align="center">
   <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.42.17%20AM.png" alt="server error">
 </p>
+
+## My Express Server
+
+As this was a small application, my server only required two routes:
+
+* api/login
+  * This route logs the user into my application. If it is their first time logging in their information gets 
+    
 
 ## 3rd Party API
 I really enjoyed interacting with the Firebase API. Though there are a lot of configurations at the start, their functions are very intuitive, and can be used on both client and server sides. Though I used a server for this project as the guidelines require, I actually think that I would create a serverless version of this project if I was to re-factor it. Because Firebase offers options like OAUTH and functions that allow API calls on the client side, I think the application would be more efficient if it did not have to hit the server first.
