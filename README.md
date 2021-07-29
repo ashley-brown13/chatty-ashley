@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300px" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/src/images/ChattyAshley.png" alt="title and logo">
+  <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/src/images/ChattyAshley.png" alt="title and logo">
 </p>
 
 ChattyAshley is a realtime chat application that allows users to send messages to each other on a simple interface. As an homage to Twitch's origin, Justin.tv, and a reference to the common phrase Chatty Cathy, I decided to name my app ChattyAshley.
@@ -88,9 +88,26 @@ https://chattyashley-f6fd4.web.app/
     cd server && npm start
     ```
     
-## High Level Overview
+# High Level Overview
 
-Chatty App 
+## Components
+
+### Landing Page/Authentication
+
+The landing page allows users to sign-in to the application with their Google accounts. If I was to build this component out, I would include other OAUTH sign-ins from Facebook and Github.
+
+<p align="center">
+  <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.39.57%20AM.png" alt="login page">
+</p>
+
+### Chat Page
+
+The Chat Page includes the live message board and form for sending your message. The message board scroll is programmed to update each time a message is added, so that users always know when a new message has arrived. In addition, I utilized Lodash and a useRef hook to implement a 'Scroll to Bottom' button that reveals itself when a user moves from the bottom view of the message board.
+
+<p align="center">
+  <img src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.41.23%20AM.png" alt="chat page">
+</p>
+
 
 
 This is a snapshot of my GET request to the Firebase API ( https://firestore.googleapis.com/google.firestore.v1.Firestore/Listen/channel), which returns the messages from my Firestore database:
