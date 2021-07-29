@@ -90,6 +90,8 @@ https://chattyashley-f6fd4.web.app/
     
 # High Level Overview
 
+To build ChattyAshley, I utilized Express, React, and Firebase. I used Firebase as my 3rd party API (which hits their provided database, Firestore) as it allows real time updates; I also decided to utilize it's other features, which include authentication and hosting. In addition, I used Typescript throughout the project to reduce errors. It was my first time using both Typescript and most of the Firebase features. Though it was challenging, I really feel happy with the result, and I am so happy I got to learn these technlogies through doing, as it is my preferred way to learn. 
+
 ## Components
 
 ### Landing Page/Authentication
@@ -127,6 +129,7 @@ Utilizing Material-UI's Dialog component, I created a reusable error modal that 
 <p align="center">
   <img width="800" src="https://github.com/ashley-brown13/chatty-ashley/blob/main/client/public/images/Screen%20Shot%202021-07-29%20at%204.42.17%20AM.png" alt="server error">
 </p>
+
 
 
 
