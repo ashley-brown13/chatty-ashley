@@ -47,4 +47,38 @@ https://chattyashley-f6fd4.web.app/
     REACT_APP_APP_ID=<<appId>>
     REACT_APP_MEASUREMENT_ID=<<measurementId>>
     ```
+ 7. In your Firebase Console:
+    1. Select Authentication from the menu: Enable Google as a Sign-in method
+    2. Select Firestore Database: Create a database
+        1. Enter the Rules tab: Replace with the following & publish
+            ```
+            rules_version = '2';
+            service cloud.firestore {
+            match /databases/{database}/documents {
+             match /{document=**} {
+              allow read, write: if request.auth != null;
+              }
+             }
+            }
+            ```
+        2. In the Data Tab:
+            1. Create a 'users' collection, and add its first document (select Auto-ID to generate document ID) with the following fields (all strings): 
+                ```
+                displayName: <<make up a test displayName>>
+                photoURL: <<enter a desired photoURL>>
+                email: <<make up a test email>>
+                uid: <<make up a random series of characters>>
+                ```
+             2. Create a 'messages' collection, and add its first document (select Auto-ID to generate document ID) with the following fields (all strings, except createdAt, which is a timestamp) :
+                ```
+                createdAt: <<select a date and time>>
+                displayName: <<same as above>>
+                photoURL: <<same as above>>
+                email: <<same as above>>
+                messageBody: <<make up a message>>
+                ```
+        
+        
+    
+ 
     
