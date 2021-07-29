@@ -17,39 +17,34 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
-const firebaseConfig_1 = __importDefault(require("./config/firebaseConfig"));
 const user_1 = require("./controllers/user");
+const message_1 = require("./controllers/message");
 const app = express_1.default();
 const port = 5000;
 app.use(cors_1.default());
 app.use(cookie_parser_1.default());
 app.use(body_parser_1.default.json());
-const firestore = firebaseConfig_1.default.firestore();
-const messageCollection = firestore.collection('messages');
 app.post('/api/login', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const userId = req.body.uid;
-    const userData = req.body;
-    const firebaseUser = firestore.collection("users").doc(userId);
-    yield firebaseUser.get().then((doc) => {
-        if (!doc.exists) {
-            user_1.addUserToDB(userData);
+    try {
+        const { displayName, photoURL, uid, email } = req.body;
+        const userDocument = yield user_1.checkIfUserExistsInDB(uid);
+        if (!userDocument.exists) {
+            yield user_1.addUserToDB({ displayName, photoURL, uid, email });
         }
-    });
-    return res.json({ success: true });
+        return res.json({ success: true });
+    }
+    catch (e) {
+        return next();
+    }
 }));
 app.post('/api/messages/send', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { formText, name, photo, authEmail, token } = req.body;
-    yield firebaseConfig_1.default
-        .auth()
-        .verifyIdToken(token);
-    yield messageCollection.add({
-        messageBody: formText,
-        createdAt: firebaseConfig_1.default.firestore.FieldValue.serverTimestamp(),
-        displayName: name,
-        photoURL: photo,
-        email: authEmail
-    });
-    return res.json({ success: true });
+    try {
+        yield message_1.addMessageToDB(req.body);
+        return res.json({ success: true });
+    }
+    catch (e) {
+        return next();
+    }
 }));
 app.use((req, res) => {
     res.status(500);
